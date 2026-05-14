@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Seller Kingmc DungXip - Money / Skeleton / Etc..." />
+  <meta name="keywords" content="bio link, beacons, cyberpunk, glassmorphism, profile, social links, kingmc" />
+  <meta name="author" content="DungXip" />
+  <meta name="theme-color" content="#05070f" />
+  <meta property="og:title" content="Seller Kingmc DungXip" />
+  <meta property="og:description" content="Seller Kingmc DungXip - Mtoney / Skeleton / Etc..." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=1200&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Seller Kingmc DungXip</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="loader" id="loader" aria-label="Loading profile">
+    <div class="loader-ring"></div>
+    <p>Syncing neon profile</p>
+  </div>
+
+  <canvas id="particleCanvas" aria-hidden="true"></canvas>
+  <div class="animated-gradient" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="mouse-glow" id="mouseGlow" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+  <div class="trail-layer" id="trailLayer" aria-hidden="true"></div>
+
+  <main class="shell">
+    <nav class="topbar glass-card reveal">
+      <a class="brand" href="#profile" aria-label="KingMC profile">
+        <span class="brand-mark">K</span>
+        <span>KingMC</span>
+      </a>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="shareBtn" aria-label="Share profile" title="Share profile"><i class="fa-solid fa-share-nodes"></i></button>
+        <button class="icon-btn" id="settingsBtn" aria-label="Open settings" title="Settings"><i class="fa-solid fa-sliders"></i></button>
+      </div>
+    </nav>
+
+    <section class="hero-grid" id="profile">
+      <article class="profile-card glass-card reveal" data-depth="0.04">
+        <div class="profile-aura"></div>
+        <div class="avatar-wrap">
+          <img class="avatar" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=360&q=90" alt="KingMC avatar" loading="lazy" />
+          <span class="online-dot" aria-label="Online"></span>
+        </div>
+        <div class="identity">
+          <h1>@dungxip <i class="fa-solid fa-circle-check verified" title="Verified"></i></h1>
+          <p class="role">Seller / Okvip</p>
+          <p class="typing" aria-live="polite"><span id="typingText"></span><span class="caret"></span></p>
+        </div>
+        <div class="hero-actions">
+          <a class="primary-btn magnetic" href="#links"><i class="fa-solid fa-link"></i>Explore Links</a>
+          <button class="ghost-btn magnetic" id="qrBtn"><i class="fa-solid fa-qrcode"></i>QR Code</button>
+        </div>
+        <div class="micro-stats">
+          <span><strong id="visitorCount">24,800</strong> visits</span>
+          <span><strong>98%</strong> uptime</span>
+          <span><strong>24/7</strong> online</span>
+        </div>
+      </article>
+
+      <aside class="side-stack">
+        <section class="clock-card glass-card reveal" data-depth="0.08">
+          <span class="eyebrow">Local Time</span>
+          <strong id="digitalClock">00:00:00</strong>
+          <small>Asia/Saigon node online</small>
+        </section>
+        <section class="coffee-card glass-card reveal" data-depth="0.06">
+          <div class="coffee-head">
+            <i class="fa-solid fa-mug-hot"></i>
+            <span>Buy me a coffee</span>
+          </div>
+          <p>Nếu bạn thích tôi này, có thể gửi mình một ly cà phê qua QR Bank.</p>
+          <button class="primary-btn coffee-action" id="coffeeQrBtn">
+            <i class="fa-solid fa-qrcode"></i>Open QR Bank
+          </button>
+          <img class="coffee-qr" src="https://i.ibb.co/nqbBmXy7/image.png" alt="QR Bank Nguyễn Tiến Dũng" loading="lazy" />
+        </section>
+      </aside>
+    </section>
+
+    <section class="content-grid">
+      <section class="link-panel glass-card reveal" id="links">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Social Orbit</span>
+            <h2>Connect everywhere</h2>
+          </div>
+          <span class="live-pill"><span></span>live</span>
+        </div>
+        <div class="social-links" id="socialLinks"></div>
+      </section>
+
+      <aside class="music-card glass-card reveal">
+        <div class="section-head compact">
+          <div>
+            <span class="eyebrow">Now Playing</span>
+            <h2>Neon Overworld</h2>
+          </div>
+          <button class="icon-btn" id="visualizerToggle" aria-label="Toggle visualizer"><i class="fa-solid fa-wave-square"></i></button>
+        </div>
+        <div class="player-main">
+          <div class="disk" id="disk">
+            <img src="https://i.ibb.co/DHmL9NZn/be3c44f7bb2d76e510905b218499d408.jpg" alt="Có Em album art" loading="lazy" />
+          </div>
+          <div class="track-info">
+            <strong>Có Em</strong>
+            <span>Madihu, Low G</span>
+            <canvas id="visualizer" width="240" height="70" aria-label="Audio visualizer"></canvas>
+          </div>
+        </div>
+        <div class="progress-row">
+          <span id="currentTime">0:00</span>
+          <input id="progress" type="range" min="0" max="100" value="0" aria-label="Music progress" />
+          <span id="durationTime">0:00</span>
+        </div>
+        <div class="player-controls">
+          <button class="icon-btn" id="prevTrack" aria-label="Previous"><i class="fa-solid fa-backward-step"></i></button>
+          <button class="play-btn" id="playPause" aria-label="Play or pause"><i class="fa-solid fa-play"></i></button>
+          <button class="icon-btn" id="nextTrack" aria-label="Next"><i class="fa-solid fa-forward-step"></i></button>
+          <label class="volume"><i class="fa-solid fa-volume-high"></i><input id="volume" type="range" min="0" max="100" value="62" aria-label="Volume" /></label>
+        </div>
+        <audio id="audioTrack" preload="metadata" src="https://files.catbox.moe/2vizyk.mp3"></audio>
+      </aside>
+    </section>
+  </main>
+
+  <button class="floating-settings magnetic" id="floatingSettings" aria-label="Quick settings"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
+
+  <dialog class="modal glass-card" id="welcomeModal">
+    <button class="modal-close" data-close="welcomeModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <span class="eyebrow">Welcome</span>
+    <h2>Welcome to the neon signal</h2>
+    <p>A premium bio link demo with glass UI, reactive particles, live widgets, music visuals, and persistent themes.</p>
+    <button class="primary-btn" data-close="welcomeModal"><i class="fa-solid fa-bolt"></i>Enter Profile</button>
+  </dialog>
+
+  <dialog class="modal glass-card settings-modal" id="settingsModal">
+    <button class="modal-close" data-close="settingsModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <span class="eyebrow">Theme Studio</span>
+    <h2>Customize vibe</h2>
+    <div class="theme-options" id="themeOptions"></div>
+    <span class="eyebrow">Background</span>
+    <div class="theme-options" id="backgroundOptions"></div>
+    <label class="color-control">Accent color <input type="color" id="accentPicker" value="#00f5ff" /></label>
+    <label class="range-control">Particle intensity <input type="range" id="particleIntensity" min="24" max="120" value="72" /></label>
+  </dialog>
+
+  <dialog class="modal glass-card" id="shareModal">
+    <button class="modal-close" data-close="shareModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <span class="eyebrow">Share</span>
+    <h2>Send the signal</h2>
+    <input class="share-input" id="shareUrl" readonly value="https://kingmc.bio/neon" />
+    <button class="primary-btn" id="copyShare"><i class="fa-solid fa-copy"></i>Copy Link</button>
+  </dialog>
+
+  <dialog class="modal glass-card qr-modal" id="qrModal">
+    <button class="modal-close" data-close="qrModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <span class="eyebrow">QR Bank</span>
+    <h2>Nguyễn Tiến Dũng</h2>
+    <img src="https://i.ibb.co/nqbBmXy7/image.png" alt="QR Bank Nguyễn Tiến Dũng" loading="lazy" />
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
