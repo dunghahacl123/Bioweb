@@ -317,7 +317,8 @@ function initMusicPlayer() {
   const volume = $("#volume");
   const currentTime = $("#currentTime");
   const durationTime = $("#durationTime");
-  audio.volume = Number(volume.value) / 100;
+  audio.volume = 0.24;
+  volume.value = 24;
 
   const formatTime = (time) => {
     if (!Number.isFinite(time)) return "0:00";
@@ -341,6 +342,13 @@ function initMusicPlayer() {
       setPlaying(false);
       showToast("Tap play to start music");
     }
+  };
+
+  const unlockAutoplay = () => {
+    if (audio.paused) playTrack();
+    removeEventListener("pointerdown", unlockAutoplay);
+    removeEventListener("keydown", unlockAutoplay);
+    removeEventListener("touchstart", unlockAutoplay);
   };
 
   playPause.addEventListener("click", async () => {
@@ -381,9 +389,10 @@ function initMusicPlayer() {
   $("#prevTrack").addEventListener("click", () => showToast("Previous demo track"));
   $("#nextTrack").addEventListener("click", () => showToast("Next demo track"));
   setTimeout(() => {
-    audio.volume = 0.24;
-    volume.value = 24;
     playTrack();
+    addEventListener("pointerdown", unlockAutoplay, { once: true });
+    addEventListener("keydown", unlockAutoplay, { once: true });
+    addEventListener("touchstart", unlockAutoplay, { once: true });
   }, 1500);
 }
 
